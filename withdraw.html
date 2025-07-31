@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdraw to M-Pesa</title>
+  <link href="style.css" rel="stylesheet" />
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <div class="max-w-md mx-auto mt-8 p-5 bg-white rounded-lg shadow">
+    <h2 class="text-2xl font-bold text-center mb-4">💸 Withdraw to M-Pesa</h2>
+
+    <p class="mb-2 text-center text-sm text-gray-600">
+      1 USD = 140 KES | 100 coins = $1
+    </p>
+
+    <div class="mb-4">
+      <label class="block text-sm font-semibold mb-1">M-Pesa Number (07XXXXXXXX)</label>
+      <input id="mpesaNumber" type="text" placeholder="Enter Safaricom number" class="w-full p-2 border rounded" />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-semibold mb-1">Coins to Withdraw</label>
+      <input id="coinsToWithdraw" type="number" placeholder="Minimum 100 coins" class="w-full p-2 border rounded" />
+    </div>
+
+    <button id="withdrawBtn" class="w-full bg-green-600 text-white py-2 rounded">
+      Withdraw
+    </button>
+
+    <p id="withdrawMsg" class="text-center text-sm text-red-600 mt-3"></p>
+
+    <a href="dashboard.html" class="block text-center mt-5 text-blue-600">⬅ Back to Dashboard</a>
+  </div>
+
+  <script>
+    document.getElementById('withdrawBtn').onclick = async () => {
+      const mpesaNumber = document.getElementById("mpesaNumber").value.trim();
+      const coins = parseInt(document.getElementById("coinsToWithdraw").value);
+      const msg = document.getElementById("withdrawMsg");
+
+      if (!mpesaNumber.startsWith("07") || mpesaNumber.length !== 10) {
+        msg.textContent = "❌ Enter a valid Safaricom number.";
+        return;
+      }
+      if (isNaN(coins) || coins < 100) {
+        msg.textContent = "❌ Minimum withdrawal is 100 coins.";
+        return;
+      }
+
+      msg.textContent = "⏳ Processing withdrawal...";
+      const result = await window.withdrawCoins(mpesaNumber, coins);
+      msg.textContent = result;
+    };
+  </script>
+</body>
+</html>
