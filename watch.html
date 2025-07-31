@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Watch & Earn</title>
+  <link href="style.css" rel="stylesheet" />
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <div class="max-w-xl mx-auto mt-6 p-4 bg-white rounded shadow">
+    <h2 class="text-xl font-bold text-center mb-3">🎬 Watch & Earn</h2>
+
+    <div id="video-container" class="mb-4">
+      <video id="rewardVideo" width="100%" controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <button id="claimRewardBtn" class="w-full bg-green-600 text-white py-2 rounded disabled:opacity-50" disabled>
+      ⏳ Watch full video to earn coins
+    </button>
+
+    <p id="watch-msg" class="text-center text-sm text-red-500 mt-3"></p>
+    <a href="dashboard.html" class="block mt-5 text-center text-blue-600">⬅ Back to Dashboard</a>
+  </div>
+
+  <script>
+    const video = document.getElementById("rewardVideo");
+    const claimBtn = document.getElementById("claimRewardBtn");
+
+    video.onended = () => {
+      claimBtn.disabled = false;
+      claimBtn.textContent = "✅ Claim 10 Coins";
+    };
+
+    claimBtn.onclick = () => {
+      claimBtn.disabled = true;
+      claimBtn.textContent = "Coins Added!";
+      // Actual logic is handled in app.js via Firebase
+      window.claimWatchCoins();
+    };
+  </script>
+</body>
+</html>
