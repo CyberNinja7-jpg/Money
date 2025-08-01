@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rahl Wallet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wallet-container {
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-top: 80px;
+    }
+    .wallet-header {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #222;
+    }
+    .balance-box {
+      margin-top: 1.5rem;
+      background: #f0f4f8;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .balance-box p {
+      margin: 0.5rem 0;
+      font-size: 18px;
+    }
+    .withdraw-btn {
+      margin-top: 1.5rem;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .note {
+      margin-top: 1rem;
+      font-size: 14px;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wallet-container">
+    <div class="wallet-header">My Wallet</div>
+
+    <div class="balance-box">
+      <p><strong>Balance (USD):</strong> $<span id="usd-balance">0.00</span></p>
+      <p><strong>Balance (KES):</strong> Ksh <span id="kes-balance">0</span></p>
+    </div>
+
+    <button class="withdraw-btn" disabled>Withdraw via Mpesa (coming soon)</button>
+
+    <div class="note">Withdrawals will be enabled soon via Mpesa</div>
+  </div>
+
+  <script>
+    const usdBalance = 12.50; // Replace with actual fetched value later
+    const exchangeRate = 144.85; // Sample rate; update with live API later
+
+    document.getElementById('usd-balance').textContent = usdBalance.toFixed(2);
+    document.getElementById('kes-balance').textContent = Math.floor(usdBalance * exchangeRate).toLocaleString();
+  </script>
+</body>
+</html>
