@@ -3,16 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | Rahl Portal</title>
+  <title>Login | Rahl</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h2>Login to Your Account</h2>
-    <input type="email" id="login-email" placeholder="Email" required />
-    <input type="password" id="login-password" placeholder="Password" required />
-    <button onclick="login()">Log In</button>
-    <a href="signup.html">Don't have an account? Sign Up</a>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="icon">
+        <span>🔒</span>
+      </div>
+      <h2>Welcome back</h2>
+      <p>Sign in to your Rahl account</p>
+      <input type="email" id="login-email" placeholder="Enter your email" required />
+      <input type="password" id="login-password" placeholder="Enter your password" required />
+      <button onclick="login()">Sign In</button>
+      <div class="links">
+        <a href="#">Forgot your password?</a>
+        <br/>
+        <span>Don't have an account? <a href="signup.html">Sign up</a></span>
+      </div>
+    </div>
   </div>
 
   <script type="module" src="firebase-config.js"></script>
